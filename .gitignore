@@ -7,6 +7,9 @@
 *.o
 *.obj
 
+# Input files
+*.in
+
 # Precompiled Headers
 *.gch
 *.pch
