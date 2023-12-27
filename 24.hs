@@ -34,15 +34,6 @@ isNotInPast :: Hail -> (Float, Float) -> Bool
 isNotInPast (Hail (x, y, z) (dx, dy, dz)) (x', y') = almostEqual x' x || signum (x' - (float x)) == signum (float dx)
 
 isCrossing :: Hail -> Hail -> Bool
--- isCrossing h1@(Hail (x1, y1, z1) (dx1, dy1, dz1)) h2@(Hail (x2, y2, z2) (dx2, dy2, dz2))
---  | trace (show (x1,y1) ++ " and " ++ show (x2,y2) ++ " crossing at " ++ show (x,y) ++ ", is within? " ++ (show (withinBounds (x,y) && isNotInPast h1 (x,y) && isNotInPast h2 (x,y)))) False = undefined
---      where
---       m1 = dy1//dx1
---       b1 = float y1 - m1*(float x1)
---       m2 = dy2//dx2
---       b2 = float y2 - m2*(float x2)
---       x = (b2 - b1) / (m1 - m2) 
---       y = m1 * x + b1
 isCrossing h1@(Hail (x1, y1, z1) (dx1, dy1, dz1)) h2@(Hail (x2, y2, z2) (dx2, dy2, dz2))
   | dx2 * dy1 == dx1 * dy2 = (x1, y1) == (x2, y2)
   | otherwise = withinBounds (x,y) && isNotInPast h1 (x,y) && isNotInPast h2 (x,y)
